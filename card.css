@@ -1,6 +1,7 @@
 :root {
 	--card-w: 64px;
 	--card-h: 92px;
+	--gap: 10px;
 }
 body {
 	display: flex;
@@ -11,6 +12,8 @@ body {
 	display: grid;
 	grid-template: repeat(7, var(--card-h)) / repeat(3, var(--card-w));
 	justify-content: center;
+	gap: var(--gap);
+	padding-bottom: var(--gap);
 }
 .card {
 	perspective: 800px;
@@ -44,4 +47,8 @@ body {
 }
 .flipped {
 	transform: rotateY(180deg);
+}
+.highlight {
+	box-shadow: 0px 0px 10px 4px gold;
+	border: 2px solid gold;
 }

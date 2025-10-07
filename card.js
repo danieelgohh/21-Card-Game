@@ -2,12 +2,14 @@ const suits = ["♠","♥","♦","♣"];
 const values = ["A","2","3","4","5","6","7","8","9","10","J","Q","K"];
 const grid = document.getElementById("cardGrid");
 const result = document.getElementById("result");
+const restartBtn = document.getElementById("restart");
+const colBtn = [document.getElementById("col1"), document.getElementById("col2"), document.getElementById("col3")]
 
-let deck = []; cards = []; round = 0;
+let deck = []; cards = []; round = 0; busy = false;
 
 function shuffle(d) {
   for (let i = d.length; i > 0; i--) {
-    j = Math.floor(Math.random * (i + 1)); // i + 1 to ensure there is a possibility card same position
+    j = Math.floor(Math.random() * (i + 1)); // i + 1 to ensure there is a possibility card same position
     [d[i], d[j]] = [d[j], d[i]];
   }
 }
@@ -56,5 +58,44 @@ function render() {
     grid.appendChild(cell);
   });
 }
+
+function chosenCol(colIndex) {
+  if (busy) return;
+  busy = true;
+
+
+  // Highlight the chosen column
+  const cardsUsed = [...grid.children];
+  const colSelected = cardsUsed.filter((_,i) => i % 3 === colIndex);
+  colSelected.forEach(c => c.querySelector("display").add("highlight"));
+
+  // Rearrange the cards by columns
+  const cols = [[], [], []]
+  for (let i = 0; i < cards.length; i ++) {
+    cols[i % 3].push(cards[i])
+  }
+  
+  setTimeout(() => {
+    if (colIndex === 0) {
+      cards = [...cols[1], ...cols[0], ...cols[2]]
+    } else if (colIndex === 1) {
+      cards = [...cols[0], ...cols[1], ...cols[2]]
+    } else {
+      cards = [...cols[0], ...cols[2], ...cols[1]]
+    }
+
+    render();
+    busy = false;
+
+    if (round === 3) {
+      
+    }
+  })
+}
+
+colBtn[0].addEventListener("click", () => chosenCol(0));
+colBtn[1].addEventListener("click", () => chosenCol(1));
+colBtn[2].addEventListener("click", () => chosenCol(2));
+restartBtn.addEventListener("click", newDeck);
 
 newDeck();

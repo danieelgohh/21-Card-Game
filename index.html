@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>21 Card Game</title>
     <link rel="stylesheet" type="text/css" href="card.css">
-    <script src="card.js"></script>
+    <script src="card.js" defer></script>
 </head>
 <body>
     <div>
@@ -16,12 +16,12 @@
         After 3 rounds, the computer will reveal it!
     </div>
 
-    <div id="card-grid"></div>
+    <div id="cardGrid"></div>
 
     <div class="startBtn">
-        <button class="col1">Column 1</button>
-        <button class="col2">Column 2</button>
-        <button class="col3">Column 3</button>
+        <button id="col1">Column 1</button>
+        <button id="col2">Column 2</button>
+        <button id="col3">Column 3</button>
     </div>
     
     <button id="restart">Restart</button>
