@@ -15,6 +15,9 @@ body {
 	gap: var(--gap);
 	padding-bottom: var(--gap);
 }
+#result {
+	
+}
 .card {
 	perspective: 800px;
 	width: var(--card-w);
