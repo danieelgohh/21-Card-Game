@@ -8,15 +8,18 @@ body {
 	flex-direction: column;
 	align-items: center;
 }
+button {
+	border-radius: 4px;
+	border: 2px solid black;
+	padding: 10px 24px;
+	cursor: pointer;
+}
 #cardGrid {
 	display: grid;
 	grid-template: repeat(7, var(--card-h)) / repeat(3, var(--card-w));
 	justify-content: center;
 	gap: var(--gap);
 	padding-bottom: var(--gap);
-}
-#result {
-	
 }
 .card {
 	perspective: 800px;
